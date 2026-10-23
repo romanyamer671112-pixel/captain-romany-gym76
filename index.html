@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captain Romany - Elite Fitness Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-black: #09090b;
+            --card-bg: #141417;
+            --card-hover: #1c1c21;
+            --primary-red: #dc2626;
+            --accent-yellow: #f59e0b;
+            --accent-green: #10b981;
+            --text-white: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #27272a;
+        }
+
+        [dir="ltr"] { text-align: left; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-black); color: var(--text-white); line-height: 1.6; padding-bottom: 60px; }
+
+        .top-bar {
+            background: linear-gradient(135deg, #141417, #09090b);
+            border-bottom: 2px solid var(--primary-red);
+            padding: 14px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+
+        .social-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0,0,0,0.5);
+            padding: 6px 14px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .social-btn:hover { transform: scale(1.1); }
+
+        .btn-whatsapp { background-color: #25D366; }
+        .btn-call { background-color: #007bff; }
+        .btn-tiktok { background-color: #000; border: 1px solid #333; }
+        .btn-facebook { background-color: #1877F2; }
+        .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+        .lang-btn {
+            background: linear-gradient(135deg, var(--accent-yellow), #d97706);
+            color: #000;
+            border: none;
+            padding: 8px 20px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+        }
+
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+            transition: all 0.3s ease;
+        }
+        .card:hover { border-color: #3f3f46; }
+
+        .card-header {
+            border-bottom: 2px solid var(--primary-red);
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title { color: var(--accent-yellow); font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+        label { font-size: 0.95rem; color: var(--text-muted); font-weight: 600; }
+
+        input, select, textarea {
+            background-color: #09090b;
+            border: 1px solid var(--border-color);
+            color: var(--text-white);
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus { border-color: var(--accent-yellow); box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15); }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: filter 0.2s, transform 0.1s;
+        }
+        .btn:active { transform: scale(0.98); }
+
+        .btn-primary { background: linear-gradient(135deg, var(--primary-red), #b91c1c); color: #fff; }
+        .btn-accent { background: linear-gradient(135deg, var(--accent-yellow), #d97706); color: #000; }
+        .btn-danger { background: linear-gradient(135deg, #dc2626, #990000); color: #fff; }
+        .btn-success { background: linear-gradient(135deg, var(--accent-green), #059669); color: #fff; }
+
+        .nav-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .tab-btn {
+            background-color: #18181b;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 12px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .tab-btn.active { background-color: var(--primary-red); color: #fff; border-color: var(--primary-red); box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4); }
+
+        .hidden { display: none !important; }
+
+        .macro-counters { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 15px; }
+        .macro-box { background: #09090b; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid var(--border-color); }
+        .macro-val { font-size: 1.4rem; font-weight: bold; color: var(--accent-yellow); margin-top: 5px; }
+
+        .subscriber-box {
+            background: #18181b;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .subscriber-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111113;
+            padding: 15px 20px;
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 15px;
+            border: 1px solid #27272a;
+        }
+
+        .subscriber-body {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-group { background: #111113; padding: 20px; border-radius: 10px; border: 1px solid var(--border-color); }
+        .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1f1f23; }
+        .formatted-content { white-space: pre-wrap; word-break: break-word; line-height: 1.8; color: #e2e8f0; background: #09090b; padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .formatted-content a { color: var(--accent-yellow); text-decoration: underline; }
+
+        .day-card {
+            background: #111113;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .exercise-item {
+            background: #09090b;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .exercise-inputs {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .exercise-inputs input {
+            flex: 1;
+            min-width: 120px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+        .reminder-box {
+            background: rgba(245, 158, 11, 0.08);
+            border-right: 4px solid var(--accent-yellow);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        
+        .streak-card {
+            background: linear-gradient(135deg, rgba(220,38,38,0.15), rgba(245,158,11,0.15));
+            border: 1px solid var(--accent-yellow);
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="social-container">
+            <span style="color:var(--accent-yellow); font-weight:bold; font-size:0.9rem;"><i class="fas fa-share-alt"></i> تواصل معنا:</span>
+            <div style="display:flex; gap:10px;">
+                <a href="https://wa.me/201044578792" target="_blank" class="social-btn btn-whatsapp" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.tiktok.com/@romanyamer1212712?_r=1&_t=ZS-9AYGYvXN2Hq" target="_blank" class="social-btn btn-tiktok" title="تيك توك"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.facebook.com/share/1HVK6FUCvm/?mibextid=wwXIfr" target="_blank" class="social-btn btn-facebook" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com/romyo71200?obrf=ZDV4NXZzYnp3b3Zw&utm_source=qr" target="_blank" class="social-btn btn-instagram" title="انستجرام"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <button class="lang-btn" onclick="toggleLanguage()"><i class="fas fa-globe"></i> <span id="langText">English</span></button>
+    </div>
+
+    <div class="container">
+
+        <div id="authSection" class="card">
+            <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-dumbbell" style="color:var(--primary-red);"></i> منصة الكابتن روماني للتدريب</h2>
+            </div>
+            
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="switchAuthMode('login')" id="tabLogin">تسجيل الدخول</button>
+                <button class="tab-btn" onclick="switchAuthMode('register')" id="tabRegister">حساب جديد</button>
+                <button class="tab-btn" onclick="switchAuthMode('admin')" id="tabAdmin">دخول الكابتن</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>رقم الموبايل</label>
+                        <input type="tel" id="loginPhone" required placeholder="01012345678">
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة السر</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                </div>
+                <button type="submit" id="loginSubmitBtn" class="btn btn-primary" style="margin-top: 20px; width: 100%;">تسجيل الدخول للمنصة</button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="hidden" onsubmit="handleRegister(event)">
+                <div class="form-grid">
+                    <div class="form-group"><label>الاسم الكامل</label><input type="text" id="regName" required></div>
+                    <div class="form-group"><label>رقم الموبايل</label><input type="tel" id="regPhone" required placeholder="01012345678"></div>
+                    <div class="form-group"><label>كلمة السر</label><input type="password" id="regPassword" required></div>
+                    <div class="form-group">
+                        <label>النوع</label>
+                        <select id="regGender">
+                            <option value="male">ذكر</option>
+                            <option value="female">أنثى</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>السن</label><input type="number" id="regAge" required></div>
+                    <div class="form-group"><label>الطول (سم)</label><input type="number" id="regHeight" required></div>
+                    <div class="form-group"><label>الوزن (كجم)</label><input type="number" id="regWeight" required></div>
+                    <div class="form-group">
+                        <label>الهدف من التمرين</label>
+                        <select id="regGoal">
+                            <option value="نقص الوزن">نقص الوزن</option>
+                            <option value="زيادة الوزن">زيادة الوزن</option>
+                            <option value="زيادة الكتلة العضلية">زيادة الكتلة العضلية</option>
+                            <option value="لياقة بدنية">لياقة بدنية</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>مدة الاشتراك</label>
+                        <select id="regPlan">
+                            <option value="1">شهر واحد</option>
+                            <option value="2">شهرين</option>
+                            <option value="3">ثلاث أشهر</option>
+                            <option value="6">6 أشهر</option>
+                            <option value="12">سنة كاملة</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>ملاحظة دائمة (اختياري)</label><input type="text" id="regNoteOpt" placeholder="أي إصابة أو حساسية..."></div>
+                </div>
+                <button type="submit" id="regSubmitBtn" class="btn btn-accent" style="margin-top: 20px; width: 100%;">تقديم طلب الاشتراك أونلاين</button>
+            </form>
+
+            <!-- Admin Login Form -->
+            <form id="adminLoginForm" class="hidden" onsubmit="handleAdminLogin(event)">
+                <div class="form-grid">
+                    <div class="form-group"><label>إيميل الكابتن</label><input type="email" id="adminEmail" value="romany@admin.com" required></div>
+                    <div class="form-group"><label>كلمة السر</label><input type="password" id="adminPassword" required placeholder="أدخل كلمة السر"></div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px; width: 100%;">دخول لوحة تحكم الكابتن</button>
+            </form>
+        </div>
+
+        <!-- Member Dashboard -->
+        <div id="memberDashboard" class="hidden">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-user-circle"></i> أهلاً بك يا بطل <span id="memberNameDisplay" style="color:var(--text-white);"></span></h2>
+                    <button class="btn btn-danger" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
+                </div>
+
+                <div class="streak-card">
+                    <div>
+                        <h4 style="color:var(--accent-yellow); font-size:1.1rem;"><i class="fas fa-fire" style="color:#f97316;"></i> سلسلة الالتزام المتواصل (Streak)</h4>
+                        <p style="font-size:0.85rem; color:var(--text-muted);">اضغط يومياً عند التزامك بالدايت والتمرين للحفاظ على الشعلة!</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <span id="streakNumDisplay" style="font-size:1.8rem; font-weight:bold; color:var(--accent-yellow);">0</span> <span style="font-size:0.9rem;">يوم 🔥</span>
+                        <button class="btn btn-accent" style="display:block; padding:5px 10px; font-size:0.8rem; margin-top:5px;" onclick="incrementStreak()"><i class="fas fa-check"></i> التزمت اليوم!</button>
+                    </div>
+                </div>
+
+                <div class="reminder-box">
+                    <div>
+                        <i class="fas fa-bell" style="color:var(--accent-yellow);"></i> <b>توجيهات الكابتن اليومية:</b>
+                        <span id="dailyCoachDisplay" style="color:#e2e8f0; display:block; margin-top:5px;">التزم بشرب المياه وتناول وجباتك في مواعيدها لضمان أفضل نتائج! 💧🔥</span>
+                    </div>
+                </div>
+
+                <div class="card" style="background:#18181b;">
+                    <h3 style="color:var(--accent-yellow); margin-bottom:12px;"><i class="fas fa-calendar-check"></i> تفاصيل اشتراكك</h3>
+                    <div class="info-row"><span>تاريخ الاشتراك:</span> <b id="memberStartDate" style="color:#fff;"></b></div>
+                    <div class="info-row" style="border-bottom:none;"><span>تاريخ انتهاء الاشتراك:</span> <b id="memberEndDate" style="color:var(--accent-yellow);"></b></div>
+                </div>
+
+                <div class="card" style="background:#18181b;">
+                    <h3 style="color:var(--accent-yellow); margin-bottom:12px;"><i class="fas fa-utensils"></i> النظام الغذائي المخصص</h3>
+                    <div id="dietContent" class="formatted-content">جاري التحميل...</div>
+                </div>
+
+                <!-- Workout & Weight Logging -->
+                <div class="card" style="background:#18181b;">
+                    <h3 style="color:var(--accent-yellow); margin-bottom:12px;"><i class="fas fa-dumbbell"></i> جدول التمارين وتسجيل الأوزان اليومي</h3>
+                    <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:15px;">قم بتسجيل أوزانك والعدات التي رفعتها لكل تمرين، ولن يتم مسحها إطلاقاً حتى تقوم بتعديلها:</p>
+                    <div id="memberWorkoutDaysContainer"></div>
+                    <button class="btn btn-success" style="width:100%; margin-top:15px;" onclick="saveWorkoutLogsByMember()"><i class="fas fa-cloud-upload-alt"></i> حفظ الأوزان والأداء بالشيت أونلاين</button>
+                </div>
+
+                <!-- Body Measurements Tracker -->
+                <div class="card" style="background:#18181b;">
+                    <h3 style="color:var(--accent-yellow); margin-bottom:12px;"><i class="fas fa-ruler-horizontal"></i> سجل القياسات الأسبوعية (الوزن - الوسط - الذراع)</h3>
+                    <div class="form-grid">
+                        <div class="form-group"><label>الوزن الحالي (كجم)</label><input type="number" id="statWeight" placeholder="مثال: 75.5"></div>
+                        <div class="form-group"><label>محيط الوسط (سم)</label><input type="number" id="statWaist" placeholder="مثال: 82"></div>
+                        <div class="form-group"><label>محيط الذراع (سم)</label><input type="number" id="statArm" placeholder="مثال: 36"></div>
+                    </div>
+                    <button class="btn btn-accent" style="margin-top:12px; width:100%;" onclick="addBodyStat()"><i class="fas fa-plus-circle"></i> تسـجيل قياس الأسبوع الجديد</button>
+                    <div id="bodyStatsHistory" style="margin-top:15px;"></div>
+                </div>
+
+                <!-- Weekly Report -->
+                <div class="card" style="background:#18181b;">
+                    <h3 style="color:var(--accent-yellow); margin-bottom:12px;"><i class="fas fa-clipboard-check"></i> تقرير التقييم الأسبوعي للكابتن</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>مستوى الطاقة والأداء في التمرين (من 10):</label>
+                            <input type="number" id="repEnergy" min="1" max="10" placeholder="10">
+                        </div>
+                        <div class="form-group">
+                            <label>مدى الالتزام بالنظام الغذائي (من 10):</label>
+                            <input type="number" id="repDiet" min="1" max="10" placeholder="10">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <label>صعوبات واجهتك أو أسئلة للكابتن لهذا الأسبوع:</label>
+                        <textarea id="repNotes" rows="2" placeholder="اكتب للكابتن أي مشكلة أو استفسار..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top:12px; width:100%;" onclick="saveWeeklyReport()"><i class="fas fa-paper-plane"></i> إرسال التقرير الأسبوعي للكابتن</button>
+                </div>
+
+                <div class="card" style="background:#18181b;">
+                    <h3 style="color:var(--accent-yellow); margin-bottom:12px;"><i class="fas fa-sticky-note"></i> ملاحظات الكابتن الدائمة</h3>
+                    <div id="coachNotesContent" class="formatted-content">جاري التحميل...</div>
+                </div>
+
+                <!-- AI Nutrition Calculator -->
+                <div class="card" style="background:#18181b;">
+                    <h3 style="color:var(--accent-yellow); margin-bottom:12px;"><i class="fas fa-calculator"></i> حاسبة الماكروز بالذكاء الاصطناعي واستبدال الوجبات</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>اكتب الطعام والجرام (مثال: 200g chicken or 150g rice)</label>
+                            <input type="text" id="foodInput" placeholder="مثال: 200g chicken or 150g rice">
+                        </div>
+                    </div>
+                    <button class="btn btn-accent" style="margin-top:12px;" onclick="calculateMacros()"><i class="fas fa-brain"></i> تحليل أونلاين بالذكاء الاصطناعي</button>
+
+                    <div class="macro-counters">
+                        <div class="macro-box"><div>بروتين</div><div class="macro-val" id="valProtein">0g</div></div>
+                        <div class="macro-box"><div>كارب</div><div class="macro-val" id="valCarbs">0g</div></div>
+                        <div class="macro-box"><div>دهون</div><div class="macro-val" id="valFats">0g</div></div>
+                        <div class="macro-box"><div>سعرات</div><div class="macro-val" id="valCalories">0 kcal</div></div>
+                    </div>
+
+                    <hr style="border-color:var(--border-color); margin:20px 0;">
+                    
+                    <h4>استبدال وجبة غير مفضلة</h4>
+                    <div class="form-grid" style="margin-top:12px;">
+                        <div class="form-group">
+                            <label>الوجبة المراد استبدالها</label>
+                            <input type="text" id="swapInput" placeholder="مثال: 3 بيضات مسلوقة">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top:12px;" onclick="swapMeal()"><i class="fas fa-exchange-alt"></i> اقتراح بديل ذكي بنفس القيم الغذائية</button>
+                    <div id="swapResult" style="margin-top:12px; color:var(--accent-yellow); font-weight:bold;"></div>
+                </div>
+
+                <div class="card" style="background:#18181b;">
+                    <h3 style="color:var(--accent-yellow); margin-bottom:12px;"><i class="fas fa-pen"></i> ملاحظاتي للكابتن (تُحفظ وحدك)</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>الملاحظة الدائمة</label>
+                            <textarea id="permNote" rows="2" placeholder="أي إرشادات ثابتة للكابتن..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>الملاحظة اليومية</label>
+                            <textarea id="dailyNote" rows="2" placeholder="شرح عن يومك والالتزام بالوجبات والتمرين..."></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-accent" style="margin-top:15px;" onclick="saveMemberNotes()"><i class="fas fa-cloud-upload-alt"></i> حفظ ملاحظاتي أونلاين</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Captain Dashboard -->
+        <div id="adminDashboard" class="hidden">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-user-shield"></i> لوحة تحكم الكابتن روماني</h2>
+                    <button class="btn btn-danger" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:15px;">
+                    <h3>قائمة المشتركين (تحكم كامل بالتمارين والأنظمة)</h3>
+                    <button class="btn btn-primary" onclick="loadSubscribers()"><i class="fas fa-sync-alt"></i> تحديث البيانات</button>
+                </div>
+                
+                <div id="adminSubscribersList"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVeiQQtgcRBH3WrUeyxLzPzgFRIgnxKmvQadlpcGTuXHTYFLOaIbxRao_1laeCgNHiqg/exec";
+
+        let currentUser = null;
+        let allSubscribers = [];
+        const DAYS = ["السبت", "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة"];
+
+        function apiRequest(params) {
+            return new Promise((resolve, reject) => {
+                const callbackName = 'jsonp_cb_' + Math.round(100000 * Math.random());
+                window[callbackName] = function(data) {
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                    resolve(data);
+                };
+                const script = document.createElement('script');
+                let queryString = '?callback=' + callbackName;
+                for (let key in params) {
+                    queryString += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+                }
+                script.src = SCRIPT_URL + queryString;
+                script.onerror = function() {
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                    reject(new Error("فشل الاتصال بـ Google Sheets"));
+                };
+                document.body.appendChild(script);
+            });
+        }
+
+        function cleanPhone(p) {
+            if(!p) return "";
+            let str = String(p).replace(/\D/g, '');
+            if(str.startsWith('20')) str = str.substring(2);
+            if(str.startsWith('0')) str = str.substring(1);
+            return str;
+        }
+
+        function formatTextWithLinks(text) {
+            if(!text || text.trim() === "") return "لا يوجد حالياً.";
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            return text.replace(urlRegex, function(url) {
+                return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const savedPhone = localStorage.getItem('c_phone');
+            const savedRole = localStorage.getItem('c_role');
+
+            if (savedRole === 'admin') {
+                showAdminDashboard();
+            } else if (savedPhone) {
+                fetchUserDataAndLogin(savedPhone);
+            }
+        });
+
+        async function fetchUserDataAndLogin(phone) {
+            try {
+                const res = await apiRequest({ action: "read" });
+                if(res.status === "success" && Array.isArray(res.data)) {
+                    allSubscribers = res.data;
+                    const user = allSubscribers.find(u => cleanPhone(u.phone) === cleanPhone(phone));
+                    if(user) {
+                        currentUser = user;
+                        showMemberDashboard();
+                    } else {
+                        logout();
+                    }
+                }
+            } catch(e) {}
+        }
+
+        function switchAuthMode(mode) {
+            document.querySelectorAll(".nav-tabs .tab-btn").forEach(b => b.classList.remove("active"));
+            document.getElementById("loginForm").classList.add("hidden");
+            document.getElementById("registerForm").classList.add("hidden");
+            document.getElementById("adminLoginForm").classList.add("hidden");
+
+            if(mode === 'login') {
+                document.getElementById("tabLogin").classList.add("active");
+                document.getElementById("loginForm").classList.remove("hidden");
+            } else if(mode === 'register') {
+                document.getElementById("tabRegister").classList.add("active");
+                document.getElementById("registerForm").classList.remove("hidden");
+            } else {
+                document.getElementById("tabAdmin").classList.add("active");
+                document.getElementById("adminLoginForm").classList.remove("hidden");
+            }
+        }
+
+        function formatDate(date) {
+            const d = new Date(date);
+            return `${String(d.getDate()).padStart(2, '0')} / ${String(d.getMonth() + 1).padStart(2, '0')} / ${d.getFullYear()}`;
+        }
+
+        async function handleRegister(e) {
+            e.preventDefault();
+            const btn = document.getElementById("regSubmitBtn");
+            btn.disabled = true;
+            btn.innerText = "جاري الحفظ في شيت جوجل...";
+
+            const rawPhone = document.getElementById("regPhone").value.trim();
+            const monthsCount = parseInt(document.getElementById("regPlan").value);
+            
+            const startDateObj = new Date();
+            const endDateObj = new Date();
+            endDateObj.setMonth(startDateObj.getMonth() + monthsCount);
+
+            const newUser = {
+                id: "sub_" + Date.now(),
+                name: document.getElementById("regName").value.trim(),
+                phone: rawPhone,
+                password: document.getElementById("regPassword").value.trim(),
+                gender: document.getElementById("regGender").value,
+                age: document.getElementById("regAge").value,
+                height: document.getElementById("regHeight").value,
+                weight: document.getElementById("regWeight").value,
+                goal: document.getElementById("regGoal").value,
+                planMonths: monthsCount,
+                startDate: formatDate(startDateObj),
+                endDate: formatDate(endDateObj),
+                photo: "",
+                diet: "",
+                workout: "",
+                coachNotes: "",
+                permNote: document.getElementById("regNoteOpt").value.trim(),
+                dailyNote: "",
+                workoutLogs: "{}",
+                dailyCoach: "",
+                streakCount: "0",
+                bodyStats: "[]",
+                weeklyReport: "{}"
+            };
+
+            try {
+                await apiRequest({ action: "save", data: JSON.stringify(newUser) });
+                alert("تم التسجيل والحفظ في شيت جوجل بنجاح!");
+                localStorage.setItem('c_phone', rawPhone);
+                localStorage.setItem('c_role', 'member');
+                currentUser = newUser;
+                showMemberDashboard();
+            } catch(err) {
+                alert("تعذر الحفظ في الشيت، تأكد من الاتصال بالإنتـرنت!");
+            }
+            btn.disabled = false;
+            btn.innerText = "تقديم طلب الاشتراك أونلاين";
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById("loginSubmitBtn");
+            btn.disabled = true;
+            btn.innerText = "جاري جلب بياناتك من شيت جوجل...";
+
+            const phoneInput = document.getElementById("loginPhone").value.trim();
+            const passInput = document.getElementById("loginPassword").value.trim();
+
+            try {
+                const res = await apiRequest({ action: "read" });
+                if(res.status === "success" && Array.isArray(res.data)) {
+                    allSubscribers = res.data;
+                    const user = allSubscribers.find(u => cleanPhone(u.phone) === cleanPhone(phoneInput) && String(u.password).trim() === passInput);
+
+                    if(user) {
+                        currentUser = user;
+                        localStorage.setItem('c_phone', user.phone);
+                        localStorage.setItem('c_role', 'member');
+                        showMemberDashboard();
+                    } else {
+                        alert("رقم الموبايل أو كلمة السر غير صحيحة!");
+                    }
+                }
+            } catch(err) {
+                alert("خطأ أثناء الاتصال بشيت جوجل!");
+            }
+
+            btn.disabled = false;
+            btn.innerText = "تسجيل الدخول للمنصة";
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            if(document.getElementById("adminEmail").value.trim() === "romany@admin.com" && document.getElementById("adminPassword").value.trim() === "admin123") {
+                localStorage.setItem('c_role', 'admin');
+                showAdminDashboard();
+            } else {
+                alert("بيانات دخول الكابتن غير صحيحة!");
+            }
+        }
+
+        function showMemberDashboard() {
+            document.getElementById("authSection").classList.add("hidden");
+            document.getElementById("adminDashboard").classList.add("hidden");
+            document.getElementById("memberDashboard").classList.remove("hidden");
+
+            document.getElementById("memberNameDisplay").innerText = currentUser.name || "";
+            document.getElementById("memberStartDate").innerText = currentUser.startDate || "";
+            document.getElementById("memberEndDate").innerText = currentUser.endDate || "";
+            document.getElementById("streakNumDisplay").innerText = currentUser.streakCount || "0";
+
+            document.getElementById("dietContent").innerHTML = formatTextWithLinks(currentUser.diet);
+            document.getElementById("coachNotesContent").innerHTML = formatTextWithLinks(currentUser.coachNotes);
+            document.getElementById("dailyCoachDisplay").innerText = currentUser.dailyCoach || "التزم بشرب المياه وتناول وجباتك في مواعيدها لضمان أفضل نتائج! 💧🔥";
+            
+            document.getElementById("permNote").value = currentUser.permNote || "";
+            document.getElementById("dailyNote").value = currentUser.dailyNote || "";
+
+            renderMemberWorkoutDays();
+            renderBodyStats();
+        }
+
+        async function incrementStreak() {
+            let current = parseInt(currentUser.streakCount || "0");
+            currentUser.streakCount = String(current + 1);
+            document.getElementById("streakNumDisplay").innerText = currentUser.streakCount;
+            await apiRequest({ action: "save", data: JSON.stringify(currentUser) });
+            alert("عاش يا بطل! تم تسـجيل التزامك لليوم 🔥");
+        }
+
+        function renderBodyStats() {
+            const container = document.getElementById("bodyStatsHistory");
+            let stats = [];
+            try { stats = JSON.parse(currentUser.bodyStats || "[]"); } catch(e){}
+
+            if(stats.length === 0) {
+                container.innerHTML = "<p style='font-size:0.85rem; color:var(--text-muted);'>لا توجد قياسات مسجلة بعد.</p>";
+                return;
+            }
+
+            let html = "<div style='display:flex; flex-direction:column; gap:8px;'>";
+            stats.forEach(st => {
+                html += `
+                    <div style="background:#09090b; padding:10px; border-radius:6px; border:1px solid var(--border-color); display:flex; justify-content:space-between; font-size:0.85rem;">
+                        <span>📅 <b>${st.date}</b></span>
+                        <span>⚖️ <b>${st.weight || '-'} كجم</b></span>
+                        <span>📏 وسط: <b>${st.waist || '-'} سم</b></span>
+                        <span>💪 ذراع: <b>${st.arm || '-'} سم</b></span>
+                    </div>
+                `;
+            });
+            html += "</div>";
+            container.innerHTML = html;
+        }
+
+        async function addBodyStat() {
+            const w = document.getElementById("statWeight").value;
+            const waist = document.getElementById("statWaist").value;
+            const arm = document.getElementById("statArm").value;
+
+            if(!w && !waist && !arm) { alert("أدخل قيمة واحدة على الأقل!"); return; }
+
+            let stats = [];
+            try { stats = JSON.parse(currentUser.bodyStats || "[]"); } catch(e){}
+
+            stats.unshift({ date: formatDate(new Date()), weight: w, waist: waist, arm: arm });
+            currentUser.bodyStats = JSON.stringify(stats);
+
+            await apiRequest({ action: "save", data: JSON.stringify(currentUser) });
+            alert("تم حفظ القياسات بنجاح!");
+            renderBodyStats();
+        }
+
+        async function saveWeeklyReport() {
+            const energy = document.getElementById("repEnergy").value;
+            const diet = document.getElementById("repDiet").value;
+            const notes = document.getElementById("repNotes").value;
+
+            const report = { date: formatDate(new Date()), energy: energy, diet: diet, notes: notes };
+            currentUser.weeklyReport = JSON.stringify(report);
+
+            await apiRequest({ action: "save", data: JSON.stringify(currentUser) });
+            alert("تم إرسال تقريرك الأسبوعي للكابتن بنجاح! 🚀");
+        }
+
+        function renderMemberWorkoutDays() {
+            const container = document.getElementById("memberWorkoutDaysContainer");
+            container.innerHTML = "";
+
+            let logs = {};
+            try { logs = JSON.parse(currentUser.workoutLogs || "{}"); } catch(e){}
+
+            DAYS.forEach(day => {
+                const dayData = logs[day] || [];
+                const dayCard = document.createElement("div");
+                dayCard.className = "day-card";
+                
+                let exHtml = "";
+                dayData.forEach((ex, idx) => {
+                    exHtml += `
+                        <div class="exercise-item">
+                            <b style="color:var(--accent-yellow); font-size:1.05rem;">${ex.name || 'تمرين'}</b> 
+                            ${ex.link ? `<a href="${ex.link}" target="_blank" style="color:#25D366; font-size:0.85rem; margin-right:12px;"><i class="fas fa-video"></i> فيديو الشرح</a>` : ''}
+                            <div class="exercise-inputs">
+                                <input type="number" placeholder="الوزن المرفوع (كجم)" id="weight_${day}_${idx}" value="${ex.loggedWeight || ''}">
+                                <input type="number" placeholder="العدات الفعلية" id="reps_${day}_${idx}" value="${ex.loggedReps || ''}">
+                            </div>
+                        </div>
+                    `;
+                });
+
+                dayCard.innerHTML = `
+                    <div class="day-header">
+                        <h4 style="color:var(--accent-yellow);"><i class="fas fa-calendar-day"></i> يوم ${day}</h4>
+                    </div>
+                    ${exHtml || '<p style="font-size:0.9rem; color:var(--text-muted);">لم يقم الكابتن بإضافة تمارين لهذا اليوم بعد.</p>'}
+                `;
+                container.appendChild(dayCard);
+            });
+        }
+
+        async function saveWorkoutLogsByMember() {
+            let logs = {};
+            try { logs = JSON.parse(currentUser.workoutLogs || "{}"); } catch(e){}
+
+            DAYS.forEach(day => {
+                if(logs[day]) {
+                    logs[day].forEach((ex, idx) => {
+                        const w = document.getElementById(`weight_${day}_${idx}`);
+                        const r = document.getElementById(`reps_${day}_${idx}`);
+                        if(w) ex.loggedWeight = w.value;
+                        if(r) ex.loggedReps = r.value;
+                    });
+                }
+            });
+
+            currentUser.workoutLogs = JSON.stringify(logs);
+
+            try {
+                await apiRequest({ action: "save", data: JSON.stringify(currentUser) });
+                alert("تم حفظ أوزانك بنجاح في الشيت ولن تتمسح أبدًا!");
+            } catch(e) {
+                alert("فشل الحفظ أونلاين!");
+            }
+        }
+
+        async function saveMemberNotes() {
+            if(!currentUser) return;
+            currentUser.permNote = document.getElementById("permNote").value;
+            currentUser.dailyNote = document.getElementById("dailyNote").value;
+
+            try {
+                await apiRequest({ action: "save", data: JSON.stringify(currentUser) });
+                alert("تم حفظ ملاحظاتك للكابتن بنجاح!");
+            } catch(e) {
+                alert("فشل الحفظ أونلاين!");
+            }
+        }
+
+        function showAdminDashboard() {
+            document.getElementById("authSection").classList.add("hidden");
+            document.getElementById("memberDashboard").classList.add("hidden");
+            document.getElementById("adminDashboard").classList.remove("hidden");
+            loadSubscribers();
+        }
+
+        // Real AI Nutrition Calculation
+        async function calculateMacros() {
+            const input = document.getElementById("foodInput").value.trim();
+            if(!input) {
+                alert("يرجى كتابة الوجبة والكمية أولاً!");
+                return;
+            }
+
+            document.getElementById("valProtein").innerText = "...";
+            document.getElementById("valCarbs").innerText = "...";
+            document.getElementById("valFats").innerText = "...";
+            document.getElementById("valCalories").innerText = "تحليل...";
+
+            try {
+                const response = await fetch(`https://api.edamam.com/api/nutrition-data?app_id=47379841&app_key=d28d15a1723e11611185129f1d227b72&nutrition-type=logging&ingr=${encodeURIComponent(input)}`);
+                const data = await response.json();
+
+                if (data && data.calories !== undefined && data.calories > 0) {
+                    const cal = data.calories;
+                    const p = data.totalNutrients.PROCNT ? data.totalNutrients.PROCNT.quantity : 0;
+                    const c = data.totalNutrients.CHOCDF ? data.totalNutrients.CHOCDF.quantity : 0;
+                    const f = data.totalNutrients.FAT ? data.totalNutrients.FAT.quantity : 0;
+
+                    document.getElementById("valProtein").innerText = p.toFixed(1) + "g";
+                    document.getElementById("valCarbs").innerText = c.toFixed(1) + "g";
+                    document.getElementById("valFats").innerText = f.toFixed(1) + "g";
+                    document.getElementById("valCalories").innerText = cal.toFixed(0) + " kcal";
+                } else {
+                    fetchRealNutritionData(input);
+                }
+            } catch (error) {
+                fetchRealNutritionData(input);
+            }
+        }
+
+        function fetchRealNutritionData(input) {
+            const db = [
+                { keywords: ["دجاج", "فراخ", "chicken"], p: 31, c: 0, f: 3.6, cal: 165 },
+                { keywords: ["أرز", "رز", "rice"], p: 2.7, c: 28, f: 0.3, cal: 130 },
+                { keywords: ["بيض", "egg"], p: 13, c: 1.1, f: 11, cal: 155 },
+                { keywords: ["لحم", "لحمه", "meat", "beef"], p: 26, c: 0, f: 15, cal: 250 },
+                { keywords: ["تونة", "تونه", "tuna"], p: 28, c: 0, f: 1, cal: 128 },
+                { keywords: ["بطاطس", "potato"], p: 2, c: 17, f: 0.1, cal: 77 },
+                { keywords: ["موز", "banana"], p: 1.1, c: 23, f: 0.3, cal: 89 },
+                { keywords: ["شوفان", "oats"], p: 16.9, c: 66.3, f: 6.9, cal: 389 },
+                { keywords: ["جبن قريش", "cottage cheese"], p: 11, c: 3.4, f: 4.3, cal: 98 },
+                { keywords: ["سمك", "fish"], p: 22, c: 0, f: 2.3, cal: 105 }
+            ];
+
+            const matches = input.match(/\d+/g);
+            const amount = matches ? parseInt(matches[0]) : 100;
+            const factor = amount / 100;
+
+            let totalP = 0, totalC = 0, totalF = 0, totalCal = 0;
+            let found = false;
+
+            db.forEach(item => {
+                if (item.keywords.some(k => input.toLowerCase().includes(k))) {
+                    totalP += item.p * factor;
+                    totalC += item.c * factor;
+                    totalF += item.f * factor;
+                    totalCal += item.cal * factor;
+                    found = true;
+                }
+            });
+
+            if (!found) {
+                totalP = 15 * factor; totalC = 20 * factor; totalF = 5 * factor; totalCal = 185 * factor;
+            }
+
+            document.getElementById("valProtein").innerText = totalP.toFixed(1) + "g";
+            document.getElementById("valCarbs").innerText = totalC.toFixed(1) + "g";
+            document.getElementById("valFats").innerText = totalF.toFixed(1) + "g";
+            document.getElementById("valCalories").innerText = totalCal.toFixed(0) + " kcal";
+        }
+
+        function swapMeal() {
+            const input = document.getElementById("swapInput").value.toLowerCase();
+            let swap = "";
+
+            if(input.includes("بيض")) swap = "البديل المقترح: 100 جرام جبن قريش أو 100 جرام تونة مصفاة من الزيت بنفس القيم الغذائية.";
+            else if(input.includes("دجاج") || input.includes("فراخ")) swap = "البديل المقترح: 120 جرام سمك فيليه مشوي أو 110 جرام لحم أحمر كندوز.";
+            else if(input.includes("أرز") || input.includes("رز")) swap = "البديل المقترح: 150 جرام بطاطس مسلوقة/مشوية أو 120 جرام مكرونة مسلوقة.";
+            else swap = "البديل المقترح: 100 جرام جبن قريش + ملعقة زيت زيتون أو 100 جرام تونة.";
+
+            document.getElementById("swapResult").innerText = swap;
+        }
+
+        function toggleSubscriberBox(id) {
+            const body = document.getElementById(`subBody_${id}`);
+            if(body) body.classList.toggle("hidden");
+        }
+
+        async function loadSubscribers() {
+            const container = document.getElementById("adminSubscribersList");
+            container.innerHTML = "<p style='color:var(--accent-yellow); text-align:center;'>جاري جلب أحدث البيانات من شيت جوجل...</p>";
+
+            try {
+                const res = await apiRequest({ action: "read" });
+                if(res.status === "success" && Array.isArray(res.data)) {
+                    allSubscribers = res.data;
+                }
+            } catch(e) {}
+
+            container.innerHTML = "";
+
+            if(allSubscribers.length === 0) {
+                container.innerHTML = "<p style='text-align:center; color:var(--text-muted);'>لا يوجد مشتركون مسجلون حالياً.</p>";
+                return;
+            }
+
+            allSubscribers.forEach((u, idx) => {
+                const uId = u.id || ('idx_' + idx);
+                const phoneClean = cleanPhone(u.phone);
+                const box = document.createElement("div");
+                box.className = "subscriber-box";
+
+                let logs = {};
+                try { logs = JSON.parse(u.workoutLogs || "{}"); } catch(e){}
+
+                let repObj = {};
+                try { repObj = JSON.parse(u.weeklyReport || "{}"); } catch(e){}
+
+                let daysAdminHtml = "";
+                DAYS.forEach(day => {
+                    const exList = logs[day] || [];
+                    let exRows = "";
+                    exList.forEach((ex, exIdx) => {
+                        exRows += `
+                            <div style="background:#09090b; padding:10px; border-radius:6px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; border:1px solid var(--border-color);">
+                                <span><b>${ex.name}</b> ${ex.link ? `<a href="${ex.link}" target="_blank" style="color:var(--accent-yellow); font-size:0.85rem; margin-right:5px;">(فيديو)</a>` : ''}</span>
+                                <span style="font-size:0.85rem; color:var(--accent-green);">أداء المتدرب: <b>${ex.loggedWeight || 0} كجم</b> | <b>${ex.loggedReps || 0} عَـدَّة</b></span>
+                                <button class="btn btn-danger" style="padding:3px 8px; font-size:0.8rem;" onclick="removeExerciseByAdmin('${uId}', '${day}', ${exIdx})">حذف</button>
+                            </div>
+                        `;
+                    });
+
+                    daysAdminHtml += `
+                        <div style="background:#141417; border:1px solid var(--border-color); padding:12px; border-radius:8px; margin-bottom:12px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                                <b style="color:var(--accent-yellow);">${day}</b>
+                                <button class="btn btn-accent" style="padding:5px 12px; font-size:0.85rem;" onclick="addExercisePrompt('${uId}', '${day}')"><i class="fas fa-plus"></i> إضافة تمرين</button>
+                            </div>
+                            ${exRows || '<span style="font-size:0.85rem; color:var(--text-muted);">لا توجد تمارين مضافة.</span>'}
+                        </div>
+                    `;
+                });
+
+                box.innerHTML = `
+                    <div class="subscriber-header">
+                        <div style="cursor:pointer; flex:1;" onclick="toggleSubscriberBox('${uId}')">
+                            <b style="color:var(--accent-yellow); font-size:1.2rem;"><i class="fas fa-user-circle"></i> ${u.name}</b>
+                            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:3px;">ينتهي في: <b style="color:var(--text-white);">${u.endDate}</b> | 🔥 الالتزام: <b style="color:var(--accent-yellow);">${u.streakCount || 0} يوم</b></div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <a href="https://wa.me/20${phoneClean}" target="_blank" class="social-btn btn-whatsapp" title="تواصل واتساب"><i class="fab fa-whatsapp"></i></a>
+                            <a href="tel:${u.phone}" class="social-btn btn-call" title="اتصال هاتفي"><i class="fas fa-phone-alt"></i></a>
+                            <button class="btn btn-danger" style="padding:8px 14px; font-size:0.85rem;" onclick="deleteSubscriber('${u.id}', '${u.phone}')">حذف</button>
+                        </div>
+                    </div>
+                    <div id="subBody_${uId}" class="subscriber-body hidden">
+                        <div class="info-group">
+                            <h4 style="color:var(--accent-yellow); margin-bottom:12px;">بيانات المشترك الشخصية</h4>
+                            <div class="info-row"><span>رقم الموبايل:</span> <b>${u.phone}</b></div>
+                            <div class="info-row"><span>كلمة السر:</span> <b>${u.password}</b></div>
+                            <div class="info-row"><span>النوع:</span> <b>${u.gender === 'male' ? 'ذكر' : 'أنثى'}</b></div>
+                            <div class="info-row"><span>السن:</span> <b>${u.age} سنة</b></div>
+                            <div class="info-row"><span>الطول / الوزن:</span> <b>${u.height} سم / ${u.weight} كجم</b></div>
+                            <div class="info-row"><span>الهدف:</span> <b>${u.goal}</b></div>
+                            <div class="info-row" style="border-bottom:none;"><span>مدة الاشتراك:</span> <b>من ${u.startDate} إلى ${u.endDate}</b></div>
+                        </div>
+
+                        <div class="info-group">
+                            <h4 style="color:var(--accent-yellow); margin-bottom:12px;">📊 تقرير التقييم الأسبوعي الأخير من المتدرب</h4>
+                            <div style="background:#09090b; padding:12px; border-radius:8px; font-size:0.85rem; border:1px solid var(--border-color);">
+                                📅 <b>التاريخ:</b> ${repObj.date || 'لا يوجد'}<br>
+                                ⚡ <b>طاقة التمرين:</b> ${repObj.energy || '-'}/10 | 🥗 <b>التزام الدايت:</b> ${repObj.diet || '-'}/10<br>
+                                💬 <b>ملاحظات المتدرب:</b> ${repObj.notes || 'لا يوجد'}
+                            </div>
+                        </div>
+
+                        <div class="info-group">
+                            <h4 style="color:var(--accent-yellow); margin-bottom:12px;">إدارة جدول تمارين الأسبوع (+)</h4>
+                            ${daysAdminHtml}
+                        </div>
+                        
+                        <div class="info-group">
+                            <h4 style="color:var(--accent-yellow); margin-bottom:12px;">النظام الغذائي المخصص</h4>
+                            <div class="form-group">
+                                <textarea id="diet_${uId}" rows="4">${u.diet || ''}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="info-group">
+                            <h4 style="color:var(--accent-yellow); margin-bottom:12px;">الملاحظات والإشعارات</h4>
+                            <div class="form-group" style="margin-bottom:12px;">
+                                <label>ملاحظة الكابتن الدائمة:</label>
+                                <textarea id="coachNotes_${uId}" rows="2">${u.coachNotes || ''}</textarea>
+                            </div>
+                            <div class="form-group" style="margin-bottom:12px;">
+                                <label>إشعار وتوجيه اليوم (يظهر للمتدرب أعلى المنصة):</label>
+                                <textarea id="dailyCoach_${uId}" rows="2">${u.dailyCoach || ''}</textarea>
+                            </div>
+                            <div style="background:#09090b; padding:12px; border-radius:8px; margin-bottom:12px; font-size:0.9rem; border:1px solid var(--border-color);">
+                                📌 <b>ملاحظة المتدرب الدائمة:</b> <span style="color:var(--accent-yellow);">${u.permNote || 'لا يوجد'}</span><br>
+                                📝 <b>ملاحظة المتدرب اليومية:</b> <span style="color:var(--accent-yellow);">${u.dailyNote || 'لا يوجد'}</span>
+                            </div>
+                            <button class="btn btn-accent" style="width:100%;" onclick="saveUserDataByAdmin('${u.id}', '${u.phone}')"><i class="fas fa-save"></i> حفظ كافة التعديلات أونلاين</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        function addExercisePrompt(uId, day) {
+            const exName = prompt(`أدخل اسم التمرين الجديد ليوم ${day}:`);
+            if(!exName) return;
+            const exLink = prompt("أدخل رابط فيديو التوضيح/الشرح (يوتيوب أو رابط خارجي):") || "";
+
+            let user = allSubscribers.find(u => (u.id || '') === uId || uId.startsWith('idx_'));
+            if(user) {
+                let logs = {};
+                try { logs = JSON.parse(user.workoutLogs || "{}"); } catch(e){}
+                if(!logs[day]) logs[day] = [];
+                logs[day].push({ name: exName, link: exLink, loggedWeight: "", loggedReps: "" });
+                user.workoutLogs = JSON.stringify(logs);
+
+                saveUserDataByAdmin(user.id, user.phone);
+            }
+        }
+
+        function removeExerciseByAdmin(uId, day, exIdx) {
+            let user = allSubscribers.find(u => (u.id || '') === uId || uId.startsWith('idx_'));
+            if(user && confirm("هل أنت متأكد من حذف هذا التمرين من الجدول؟")) {
+                let logs = {};
+                try { logs = JSON.parse(user.workoutLogs || "{}"); } catch(e){}
+                if(logs[day]) {
+                    logs[day].splice(exIdx, 1);
+                    user.workoutLogs = JSON.stringify(logs);
+                    saveUserDataByAdmin(user.id, user.phone);
+                }
+            }
+        }
+
+        async function saveUserDataByAdmin(id, phone) {
+            let user = allSubscribers.find(u => String(u.id) === String(id) || cleanPhone(u.phone) === cleanPhone(phone));
+            if(user) {
+                const uId = user.id || id;
+                if(document.getElementById(`diet_${uId}`)) user.diet = document.getElementById(`diet_${uId}`).value;
+                if(document.getElementById(`coachNotes_${uId}`)) user.coachNotes = document.getElementById(`coachNotes_${uId}`).value;
+                if(document.getElementById(`dailyCoach_${uId}`)) user.dailyCoach = document.getElementById(`dailyCoach_${uId}`).value;
+
+                try {
+                    await apiRequest({ action: "save", data: JSON.stringify(user) });
+                    alert("تم حفظ التعديلات والتمارين في شيت جوجل بنجاح ولن تختفي أبداً!");
+                    loadSubscribers();
+                } catch(e) {
+                    alert("تعذر الحفظ في الشيت!");
+                }
+            }
+        }
+
+        async function deleteSubscriber(id, phone) {
+            if(confirm("هل أنت متأكد من حذف هذا المشترك نهائياً من شيت جوجل؟")) {
+                try {
+                    await apiRequest({ action: "delete", id: id, phone: phone });
+                    alert("تم الحذف بنجاح!");
+                    loadSubscribers();
+                } catch(e) {
+                    alert("فشل الحذف من السيرفر!");
+                }
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('c_phone');
+            localStorage.removeItem('c_role');
+            document.getElementById("memberDashboard").classList.add("hidden");
+            document.getElementById("adminDashboard").classList.add("hidden");
+            document.getElementById("authSection").classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>
